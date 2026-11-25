@@ -1,6 +1,6 @@
 # Bot Telegram 5G MATTER
 
-Mã nguồn nằm trong `src/`: `api/` xử lý webhook, `bot/` khởi chạy và xử lý tin nhắn, `ui/` chứa nội dung và giao diện, còn `services/` chứa các chức năng hỗ trợ. Cấu hình chung nằm trong `src/config.py`; dữ liệu icon và ảnh nằm trong `assets/`. File `api/index.py` là điểm vào Vercel, còn `bot.py` ở thư mục gốc dùng để chạy bot trên máy cục bộ.
+Mã nguồn nằm trong `src/`: `api/` xử lý webhook, `bot/` khởi chạy và xử lý tin nhắn, `ui/` chứa nội dung và giao diện, còn `services/` chứa các chức năng hỗ trợ. Cấu hình chung nằm trong `src/config.py`; dữ liệu icon và ảnh nằm trong `assets/`. Vercel dùng điểm vào `src/api/index.py` được khai báo trong `pyproject.toml`, còn `bot.py` ở thư mục gốc dùng để chạy bot trên máy cục bộ.
 
 ## Triển khai lên Vercel
 
@@ -11,14 +11,14 @@ Bot dùng webhook trên Vercel; không chạy `bot.py` hoặc polling đồng th
    - `BOT_TOKEN`: token của bot từ BotFather.
    - `TELEGRAM_WEBHOOK_SECRET`: một chuỗi bí mật tự chọn, dài 1–256 ký tự, chỉ gồm chữ cái tiếng Anh, số, `_` hoặc `-`.
    - `ADMIN_IDS` (không bắt buộc): ID Telegram của quản trị viên, cách nhau bằng dấu phẩy.
-3. Triển khai lên production, ví dụ bằng `npx vercel --prod`. Sau khi đổi biến môi trường, triển khai lại để áp dụng. Ghi lại tên miền production, ví dụ `https://ten-du-an.vercel.src`.
+3. Triển khai lên production, ví dụ bằng `npx vercel --prod`. Sau khi đổi biến môi trường, triển khai lại để áp dụng. Ghi lại tên miền production, ví dụ `https://ten-du-an.vercel.app`.
 4. Bảo đảm URL `/webhook` có thể nhận yêu cầu công khai từ Telegram; nếu bật Deployment Protection, cần cấu hình để Telegram truy cập được webhook.
 5. Đăng ký webhook **sau khi triển khai**. Trên PowerShell, chạy các lệnh dưới đây, nhập token và secret tương ứng khi được hỏi, và thay URL bằng tên miền production thật:
 
    ```powershell
    $botToken = Read-Host 'BOT_TOKEN'
    $webhookSecret = Read-Host 'TELEGRAM_WEBHOOK_SECRET'
-   $webhookUrl = 'https://ten-du-an.vercel.src/webhook'
+   $webhookUrl = 'https://ten-du-an.vercel.app/webhook'
    Invoke-RestMethod -Method Post -Uri "https://api.telegram.org/bot$botToken/setWebhook" -Body @{ url = $webhookUrl; secret_token = $webhookSecret; allowed_updates = '["message","callback_query"]' }
    ```
 
