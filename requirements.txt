@@ -1,0 +1,10 @@
+# Pin chính xác để build tái lập được.
+# Nâng phiên bản cần kiểm lại hành vi (vd PTB v22 đổi cách bóc tiền tố
+# trong TelegramError, và đổi hành vi validation token trong Bot.__init__).
+python-telegram-bot==22.7
+
+# Để pip chọn phiên bản httpx tương thích với python-telegram-bot.
+httpx
+APScheduler==3.10.4
+tornado==6.4.2
+certifi==2024.8.30

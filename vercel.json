@@ -1,0 +1,8 @@
+{
+  "functions": {
+    "api/index.py": { "includeFiles": "assets/**" }
+  },
+  "rewrites": [
+    { "source": "/webhook", "destination": "/api/index" }
+  ]
+}
