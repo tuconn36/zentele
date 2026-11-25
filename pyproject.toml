@@ -1,2 +1,13 @@
+[project]
+name = "zentele"
+version = "0.1.0"
+dependencies = [
+    "python-telegram-bot==22.7",
+    "httpx",
+    "APScheduler==3.10.4",
+    "tornado==6.4.2",
+    "certifi==2024.8.30",
+]
+
 [tool.vercel]
 entrypoint = "src.api.index:app"
